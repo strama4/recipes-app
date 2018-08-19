@@ -7,28 +7,31 @@ document.getElementById('title').innerHTML = data[0].title
 
 const generateDOMElements = () => {
     let recipeEl = document.createElement('div')
+    let headerEl = document.createElement('div')
     let titleEl = document.createElement('p')
     let imageEl = document.createElement('img')
     let ingredientsEl = document.createElement('p')
 
+    recipeEl.classList.add('recipe')
+    titleEl.classList.add('recipe-title')
+    imageEl.classList.add('recipe-image')
+    ingredientsEl.classList.add('recipe-ingredients')
+
     return {
-        recipeEl, titleEl, imageEl, ingredientsEl
+        recipeEl, headerEl, titleEl, imageEl, ingredientsEl
     }
 }
-
-// We're able to create the elements in generateDOMElements() and append exactly what we want.
-// Going forward, let's try and run a for loop where we assign values to each of the things 
-// in generateDOMElements with their property info from 'data'
 
 // Add each recipe in JSON data
 for (let i = 0; i < recipes.length; i++) {
     let nextRecipe = generateDOMElements()
     nextRecipe.imageEl.src = recipes[i].thumbnail
-    nextRecipe.titleEl.innerHTML = recipes[i].title
+    nextRecipe.titleEl.innerHTML = "<a href=" + recipes[i].href + ">" + recipes[i].title + "</a>"
     nextRecipe.ingredientsEl.innerHTML = recipes[i].ingredients
 
-    nextRecipe.recipeEl.appendChild(nextRecipe.imageEl)
-    nextRecipe.recipeEl.appendChild(nextRecipe.titleEl)
+    nextRecipe.headerEl.appendChild(nextRecipe.imageEl)
+    nextRecipe.headerEl.appendChild(nextRecipe.titleEl)
+    nextRecipe.recipeEl.appendChild(nextRecipe.headerEl)
     nextRecipe.recipeEl.appendChild(nextRecipe.ingredientsEl)
     document.getElementById('recipe-list').appendChild(nextRecipe.recipeEl)
 }

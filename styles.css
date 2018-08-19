@@ -1,0 +1,32 @@
+
+.recipe {
+    border-style: solid;
+    border-color: black;
+    margin-bottom: 10px;
+}
+
+.recipe-image {
+    float: left;
+    padding: 1em;
+    
+}
+
+.recipe-title {
+    text-align: center;
+    font-size: 2em;
+}
+
+.recipe-ingredients {
+    border-style: dotted;
+    text-align: center;
+    margin-top: 20px;
+}
+
+div {
+    border-style: dotted;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3em;
+}
