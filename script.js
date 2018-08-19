@@ -12,9 +12,10 @@ const generateDOMElements = () => {
     let imageEl = document.createElement('img')
     let ingredientsEl = document.createElement('p')
 
-    recipeEl.classList.add('recipe')
-    titleEl.classList.add('recipe-title')
-    imageEl.classList.add('recipe-image')
+    headerEl.classList.add('grid-x')
+    recipeEl.classList.add('recipe', 'cell')
+    titleEl.classList.add('recipe-title', 'auto')
+    imageEl.classList.add('recipe-image', 'shrink')
     ingredientsEl.classList.add('recipe-ingredients')
 
     return {
@@ -22,12 +23,25 @@ const generateDOMElements = () => {
     }
 }
 
+const unorderedIngredients = (ingredients) => {
+    let list = document.createElement('ul')
+    let ingredientsArray = ingredients.split(',').map((x) => x.trim())
+
+    for (let i = 0; i < ingredientsArray.length; i++) {
+        let newItem = document.createElement('li')
+        newItem.innerHTML = ingredientsArray[i]
+        list.appendChild(newItem)
+    }
+    console.log(list)
+    return list
+}
+
 // Add each recipe in JSON data
 for (let i = 0; i < recipes.length; i++) {
     let nextRecipe = generateDOMElements()
     nextRecipe.imageEl.src = recipes[i].thumbnail
     nextRecipe.titleEl.innerHTML = "<a href=" + recipes[i].href + ">" + recipes[i].title + "</a>"
-    nextRecipe.ingredientsEl.innerHTML = recipes[i].ingredients
+    nextRecipe.ingredientsEl.innerText = unorderedIngredients(recipes[i].ingredients)
 
     nextRecipe.headerEl.appendChild(nextRecipe.imageEl)
     nextRecipe.headerEl.appendChild(nextRecipe.titleEl)
