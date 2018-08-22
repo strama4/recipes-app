@@ -9,8 +9,7 @@ body {
     body {
         padding-left: 0rem;
         padding-right: 0rem;
-    }
-				
+    }		
 }
 .recipe {
     border-style: solid;
@@ -40,10 +39,6 @@ body {
     padding-left: 2em;
     margin-right: 2em;
 }
-
-/* div {
-    border-style: dotted;
-} */
 
 h1 {
     text-align: center;

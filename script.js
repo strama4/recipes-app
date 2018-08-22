@@ -31,7 +31,6 @@ const unorderedIngredients = (ingredients) => {
         newItem.innerHTML = ingredientsArray[i]
         list.appendChild(newItem)
     }
-    // Causing issues with ingredients list. Trying to get them to show up in 3 columns for medium/large and 2 columsn in small
     list.classList.add('recipe-ingredients', 'grid-x')
     
     return list
