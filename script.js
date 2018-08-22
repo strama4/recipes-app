@@ -10,16 +10,14 @@ const generateDOMElements = () => {
     let headerEl = document.createElement('div')
     let titleEl = document.createElement('p')
     let imageEl = document.createElement('img')
-    let ingredientsEl = document.createElement('p')
 
-    headerEl.classList.add('grid-x')
+    headerEl.classList.add('header', 'grid-x')
     recipeEl.classList.add('recipe', 'cell')
     titleEl.classList.add('recipe-title', 'auto')
     imageEl.classList.add('recipe-image', 'shrink')
-    ingredientsEl.classList.add('recipe-ingredients')
 
     return {
-        recipeEl, headerEl, titleEl, imageEl, ingredientsEl
+        recipeEl, headerEl, titleEl, imageEl
     }
 }
 
@@ -29,10 +27,13 @@ const unorderedIngredients = (ingredients) => {
 
     for (let i = 0; i < ingredientsArray.length; i++) {
         let newItem = document.createElement('li')
+        newItem.classList.add('cell', 'large-4', 'medium-4', 'small-6')
         newItem.innerHTML = ingredientsArray[i]
         list.appendChild(newItem)
     }
-    console.log(list)
+    // Causing issues with ingredients list. Trying to get them to show up in 3 columns for medium/large and 2 columsn in small
+    list.classList.add('recipe-ingredients', 'grid-x')
+    
     return list
 }
 
@@ -41,12 +42,11 @@ for (let i = 0; i < recipes.length; i++) {
     let nextRecipe = generateDOMElements()
     nextRecipe.imageEl.src = recipes[i].thumbnail
     nextRecipe.titleEl.innerHTML = "<a href=" + recipes[i].href + ">" + recipes[i].title + "</a>"
-    nextRecipe.ingredientsEl.innerText = unorderedIngredients(recipes[i].ingredients)
 
     nextRecipe.headerEl.appendChild(nextRecipe.imageEl)
     nextRecipe.headerEl.appendChild(nextRecipe.titleEl)
     nextRecipe.recipeEl.appendChild(nextRecipe.headerEl)
-    nextRecipe.recipeEl.appendChild(nextRecipe.ingredientsEl)
+    nextRecipe.recipeEl.appendChild(unorderedIngredients(recipes[i].ingredients))
     document.getElementById('recipe-list').appendChild(nextRecipe.recipeEl)
 }
 
